@@ -7,16 +7,17 @@ export class Movie {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 255 })
+
+  @Column({ type: 'varchar', length: 255 ,nullable: true })
   title: string;
 
-  @Column({ type: 'varchar', length: 10 })
+  @Column({ type: 'varchar', length: 10 ,nullable: true })
   rating_classification: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text',nullable: true  })
   description: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date' ,nullable: true })
   release_date: Date;
 
   @ManyToMany(() => Actor, (actor) => actor.movies, {

@@ -12,16 +12,32 @@ import { Actor } from './actors/entities/actor.entity';
 
 
 @Module({
-  imports: [MoviesModule, UsersModule, ActorsModule,TypeOrmModule.forRoot({
-    type: 'mysql',
-    host: 'localhost',
-    port: 3306,
+  imports: [MoviesModule, UsersModule, ActorsModule,
+  //   TypeOrmModule.forRoot({
+  //   type: 'mysql',
+  //   host: 'localhost',
+  //   port: 3306,
+  //   username: 'root',
+  //   password: '',
+  //   database: 'music',
+  //   entities: [User,Movie,Actor],
+  //   synchronize: true,
+  //   autoLoadEntities: true
+  // }),
+  TypeOrmModule.forRoot({
+    type: 'postgres',
+    //host: 'dpg-ck7gkr08elhc73b17p20-a.oregon-postgres.render.com',
+    host: 'dpg-ck7gkr08elhc73b17p20-a',
+    port: 5432,
     username: 'root',
-    password: '',
+    password: 'LElqTyClO2lyaSjR0sWK15FJl8WUEtjG',
     database: 'music',
     entities: [User,Movie,Actor],
     synchronize: true,
-    autoLoadEntities: true
+    autoLoadEntities: true,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   })],
   controllers: [AppController],
   providers: [AppService],
