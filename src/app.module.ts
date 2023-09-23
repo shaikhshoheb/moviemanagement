@@ -10,6 +10,7 @@ import { User } from './users/entities/user.entity';
 import { Movie } from './movies/entities/movie.entity';
 import { Actor } from './actors/entities/actor.entity';
 
+
 @Module({
   imports: [MoviesModule, UsersModule, ActorsModule,TypeOrmModule.forRoot({
     type: 'mysql',
@@ -25,6 +26,8 @@ import { Actor } from './actors/entities/actor.entity';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
+
+export class AppModule  {
   constructor(private dataSource: DataSource) {}
+
 }
