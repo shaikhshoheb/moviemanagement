@@ -1,7 +1,7 @@
 import { Session } from 'express-session';
 import { Request, Response, NextFunction } from 'express';
 import { Injectable, NestMiddleware, UnauthorizedException } from '@nestjs/common';
-const routesToSkipSessionCheck = ['/users/login', '/users/logout']; 
+const routesToSkipSessionCheck = ['/users/login', '/users/logout','docs']; 
 
 @Injectable()
 export class SessionMiddleware implements NestMiddleware {
