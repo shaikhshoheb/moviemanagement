@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto,loginDto } from './dto/create-user.dto';
+import { CreateUserDto,LoginDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { validate } from 'class-validator'; // Import the validate function
 
@@ -16,22 +16,19 @@ export class UsersController {
   }
 
   @Post('login')
-  async login(@Body() loginDto: loginDto) {
-    // Validate the login DTO using class-validator
+  async login(@Body() loginDto: LoginDto) {
     const errors = await validate(loginDto);
     if (errors.length > 0) {
       throw new BadRequestException('Validation failed');
     }
 
-    // Implement your login logic here
     const { username, password } = loginDto;
     console.log(loginDto)
     const user = await this.usersService.login(username, password);
 
-    // Return the appropriate response
     return {
       user_id: user.id,
-      name: user.username, // Adjust as per your user entity structure
+      name: user.username,  
       email: user.email,
     };
   }
