@@ -19,7 +19,6 @@ export class UsersService {
   async login(username: string, password: string): Promise<User> {
 
     const user = await this.usersRepository.findOne({ where: { username } });
-    console.log("user",user)
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -28,9 +27,6 @@ export class UsersService {
     }else{
       throw new UnauthorizedException('Invalid password');
     }
-
-
-
   }
 
   findAll(): Promise<User[]> {
@@ -38,15 +34,8 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findOne(id: number) {
-    return ` This action returns a #${id} user`;
-  }
-
   update(id: number, updateUserDto: UpdateUserDto) {
     return ` This action updates a #${id} user`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
 }
