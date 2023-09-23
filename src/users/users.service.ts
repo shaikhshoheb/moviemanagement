@@ -22,7 +22,8 @@ export class UsersService {
     if (!user) {
       throw new NotFoundException('User not found');
     }
-    if (user.password && user.password==="inscure"){
+    console.log(user.password)
+    if (user.password && user.password===password){
       return user;
     }else{
       throw new UnauthorizedException('Invalid password');
