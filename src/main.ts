@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
-import { SessionMiddleware } from './middleware/session.middleware';
+import { SessionMiddleware } from '../src/middleware/session.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
