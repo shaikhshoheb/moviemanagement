@@ -11,7 +11,7 @@ export class Movie {
   @Column({ type: 'varchar', length: 255 ,nullable: true })
   title: string;
 
-  @Column({ type: 'varchar', length: 10 ,nullable: true })
+  @Column({ type: 'varchar', length: 255 ,nullable: true })
   rating_classification: string;
 
   @Column({ type: 'text',nullable: true  })
@@ -21,8 +21,7 @@ export class Movie {
   release_date: Date;
 
   @ManyToMany(() => Actor, (actor) => actor.movies, {
-    cascade: true,
-    eager: true,
+    cascade: true
   })
   @JoinTable({ name: 'movie_actors' })
   actors: Actor[];

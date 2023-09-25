@@ -27,8 +27,19 @@ export class MoviesService {
     return this.movieRepository.find();
   }
 
-  findOne(id: number) {
-    return  this.movieRepository.findOneBy({id:id})
+  async findOne(id: number): Promise<Movie | undefined> {
+    const movie = await this.movieRepository
+      .createQueryBuilder('movie')
+      .leftJoinAndSelect('movie.actors', 'actors')
+      .where('movie.id = :id', { id })
+      .getOne();
+
+    if (movie && movie.actors.length === 0) {
+      delete movie.actors;
+    }
+
+    return movie;
+
   }
 
   async update(id: number, updateMovieDto: UpdateMovieDto): Promise<Movie> {
